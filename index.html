@@ -150,22 +150,6 @@
         .map-step strong { display: block; margin-bottom: 1px; font-size: 18px; letter-spacing: -.02em; }
         .map-step span:last-child { color: #b8cad1; font-size: 13px; line-height: 1.5; }
         .map-foot { position: relative; z-index: 1; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.13); color: #b8cad1; font-size: 12px; }
-        .updates { margin-top: -17px; position: relative; z-index: 1; }
-        .updates-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            overflow: hidden;
-            border: 1px solid var(--line);
-            border-radius: 15px;
-            background: white;
-            box-shadow: var(--shadow);
-        }
-        .update { padding: 20px 24px; display: flex; align-items: flex-start; gap: 15px; }
-        .update + .update { border-left: 1px solid var(--line); }
-        .update-label { flex: none; color: var(--teal); font-size: 11px; letter-spacing: .1em; font-weight: 800; text-transform: uppercase; margin-top: 3px; }
-        .update p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
-        .update strong { color: var(--ink); }
         .stag-section { padding-top: 108px; }
         .stag-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: end; margin-bottom: 30px; }
         .stag-heading p { max-width: 490px; margin: 0; color: var(--ink-soft); }
@@ -278,6 +262,22 @@
         .act .pill { color: #9d4f26; background: var(--orange-light); }
         .project h4 { font-size: 18px; line-height: 1.35; margin: 0 0 9px; letter-spacing: -.02em; }
         .project p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+        .project-video { margin: 18px 0 0; max-width: 720px; }
+        .project-video iframe {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 10px;
+            background: var(--ink);
+        }
+        .project-video figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+        .project-figure { margin: 18px 0 0; max-width: 720px; }
+        .project-figure a { display: block; }
+        .project-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+        .project-figure figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.5; }
         .project-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; }
         .project-links a { font-size: 13px; font-weight: 750; text-decoration: none; }
         .project-links a:hover { text-decoration: underline; }
@@ -341,8 +341,7 @@
             .hero { padding: 58px 0 65px; }
             .hero-copy { font-size: 16px; }
             .research-map { padding: 25px; }
-            .updates-inner, .section-header, .project-grid, .background-grid, .degree-grid { grid-template-columns: 1fr; }
-            .update + .update { border-left: 0; border-top: 1px solid var(--line); }
+            .section-header, .project-grid, .background-grid, .degree-grid { grid-template-columns: 1fr; }
             .stag-section { padding-top: 75px; }
             .stag-heading { grid-template-columns: 1fr; gap: 0; }
             .stag-card-top, .stag-meta { padding-inline: 18px; }
@@ -386,12 +385,18 @@
                     <p class="hero-copy">
                         I am <strong>Qingyu Xiao</strong>, a Robotics PhD candidate at Georgia Tech advised by
                         <a href="https://faculty.cc.gatech.edu/~matthew.gombolay/">Prof. Matthew Gombolay</a>.
-                        I develop structured approaches to robot perception and prediction, and explore how
-                        they connect to action in agile, real-world settings.
+                        The real world is full of uncertainty. Sensing errors affect predictions and decisions,
+                        while actions shape what a robot observes next. I seek to learn a joint probabilistic
+                        model of sensing, thinking, and acting so these processes can inform one another
+                        and account for uncertainty across the entire loop. With
+                        <a href="https://dellaert.github.io/">Dr. Frank Dellaert</a>, I explore the
+                        <strong><a href="https://gtsam.org/2026/04/21/factor-graphs-and-world-models.html">STAG (Sense, Think, Action Graph) model</a></strong> to connect perception,
+                        prediction, and action in agile, real-world settings.
                     </p>
                     <div class="hero-actions">
                         <a class="button primary" href="#research">Explore my research <span aria-hidden="true">↘</span></a>
                         <a class="button" href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&amp;hl">Google Scholar <span aria-hidden="true">↗</span></a>
+                        <a class="button" href="https://www.linkedin.com/in/qingyu-xiao-3756a9119/">LinkedIn <span aria-hidden="true">↗</span></a>
                         <a class="button" href="mailto:qxiao33@gatech.edu">Email me <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
@@ -400,22 +405,15 @@
                     <div class="map-step"><div class="step-number">01</div><div><strong>Sense</strong><span>Visual measurements · state estimation · multi-camera localization</span></div></div>
                     <div class="map-step"><div class="step-number">02</div><div><strong>Think</strong><span>Differentiable factor graphs · learned dynamics · prediction</span></div></div>
                     <div class="map-step"><div class="step-number">03</div><div><strong>Act</strong><span>Agile robot behavior · egocentric perception-to-action research</span></div></div>
-                    <div class="map-foot">Distinct projects, one question: how can robots close the loop?</div>
+                    <div class="map-foot">In a world full of uncertainty, I seek to learn a joint probabilistic model of what robots sense, how they think, and how they act.</div>
                 </div>
             </div>
         </section>
 
-        <div class="container updates" aria-label="Recent updates">
-            <div class="updates-inner">
-                <div class="update"><span class="update-label">IROS 2026</span><p><strong>Real-Time Robot Localization from Multi-Camera Line Landmarks</strong> accepted.</p></div>
-                <div class="update"><span class="update-label">CoRL 2026</span><p>Organizing <strong><a href="https://roboletics.github.io/corl2026/">RoboLetics 3.0</a></strong>, a workshop on benchmarks for agile physical HRI.</p></div>
-            </div>
-        </div>
-
         <section class="container stag-section" aria-labelledby="stag-title">
             <div class="stag-heading">
                 <div><span class="eyebrow">Current research direction</span><h2 id="stag-title">One graph from sensing to action</h2></div>
-                <p>A STAG-inspired sketch for my ongoing Esther tennis work: sensor cues and learned visual outputs become measurements; factors connect them across time to estimate state and reason about future actions.</p>
+                <p>A STAG-inspired sketch for my ongoing <a href="https://core-robotics-lab.github.io/Wheelchair-Tennis-Robot/">Esther</a> tennis work: sensor cues and learned visual outputs become measurements; factors connect them across time to estimate state and reason about future actions.</p>
             </div>
             <div class="stag-card">
                 <div class="stag-card-top">
@@ -508,7 +506,7 @@
                         <span><i class="legend-shape legend-dynamics" aria-hidden="true"></i>Measurement / dynamics factor</span>
                         <span><i class="legend-shape legend-goal" aria-hidden="true"></i>Goal factor</span>
                     </div>
-                    <p class="stag-credit">Conceptual redraw inspired by <a href="https://gtsam.org/2026/04/21/factor-graphs-and-world-models.html">Frank Dellaert’s STAG article</a>. Tennis objectives and ball detections are illustrative; Esther integration is ongoing research.</p>
+                    <p class="stag-credit">Conceptual redraw inspired by <a href="https://gtsam.org/2026/04/21/factor-graphs-and-world-models.html">Frank Dellaert’s STAG article</a>. Tennis objectives and ball detections are illustrative; <a href="https://core-robotics-lab.github.io/Wheelchair-Tennis-Robot/">Esther</a> integration is ongoing research.</p>
                 </div>
             </div>
         </section>
@@ -516,67 +514,105 @@
         <section class="container section" id="research">
             <div class="section-header">
                 <div><span class="eyebrow">Research</span><h2>From perception to action</h2></div>
-                <p>My work spans three connected directions across separate projects. My current Esther tennis research explores joining real-world egocentric perceptions and robot actions in one factor graph.</p>
-            </div>
-
-            <div class="stage sense">
-                <div class="stage-aside"><span class="stage-index">01 / PERCEPTION</span><h3 class="stage-title">Learn to Sense</h3><p>Extracting reliable state from fast, incomplete, multi-sensor observations.</p></div>
-                <div class="project-grid">
-                    <article class="project featured">
-                        <div class="project-top"><span class="project-type">Multi-camera localization</span><span class="pill">IROS 2026 · Accepted</span></div>
-                        <h4>Real-Time Robot Localization from Multi-Camera Line Landmarks</h4>
-                        <p>Asynchronous robot pose estimation from visual line landmarks using probabilistic factor graphs and incremental GTSAM inference. A C++17/ROS 2 pipeline runs at 160 FPS with approximately 10 cm localization error without LiDAR on tennis courts; ControlNet-based pseudo-data supports line-segmentation training.</p>
-                    </article>
-                    <article class="project">
-                        <div class="project-top"><span class="project-type">Autonomous driving</span><span class="pill">Stack AV · 2025</span></div>
-                        <h4>Learnable factor graphs for cuboid auto-labeling</h4>
-                        <p>Modeled cuboid distributions from camera and LiDAR observations, improving recall from approximately 50% to 90% while maintaining precision around 90%.</p>
-                    </article>
-                    <article class="project">
-                        <div class="project-top"><span class="project-type">Construction robotics</span><span class="pill">SkyMul · 2022</span></div>
-                        <h4>Rebar landmarks for robot vision</h4>
-                        <p>Built GPU-accelerated rebar-intersection detection and added rebar landmarks to visual–inertial SLAM with GTSAM factor graphs.</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="stage think">
-                <div class="stage-aside"><span class="stage-index">02 / PREDICTION</span><h3 class="stage-title">Learn to Think</h3><p>Combining geometric inference with models of how the physical world evolves.</p></div>
-                <div class="project-grid">
-                    <article class="project">
-                        <div class="project-top"><span class="project-type">Dynamics learning</span><span class="pill">ICRA 2025</span></div>
-                        <h4>Learning ball dynamics with differentiable factor graphs</h4>
-                        <p>Jointly learned a factor-graph estimator and neural predictor from camera observations, using roto-translational invariant representations for flight and bounce dynamics.</p>
-                        <div class="project-links"><a href="https://arxiv.org/abs/2409.16467">Read paper ↗</a></div>
-                    </article>
-                    <article class="project">
-                        <div class="project-top"><span class="project-type">State estimation</span><span class="pill">ICRA 2024</span></div>
-                        <h4>Asynchronous multi-camera ball prediction</h4>
-                        <p>Fused camera observations and human-pose-derived spin priors in a factor graph, reducing landing-position prediction error by 63.6% versus an adaptive EKF baseline.</p>
-                        <div class="project-links"><a href="https://arxiv.org/abs/2401.17185">Read paper ↗</a></div>
-                    </article>
-                </div>
+                <p>My work spans three connected directions across separate projects. My current <a href="https://core-robotics-lab.github.io/Wheelchair-Tennis-Robot/">Esther</a> tennis research explores joining real-world egocentric perceptions and robot actions in one factor graph.</p>
             </div>
 
             <div class="stage act">
-                <div class="stage-aside"><span class="stage-index">03 / BEHAVIOR</span><h3 class="stage-title">Learn to Act</h3><p>Turning state and predictions into responsive behavior for agile robots.</p></div>
+                <div class="stage-aside"><span class="stage-index">01 / BEHAVIOR</span><h3 class="stage-title">Learn to Act</h3><p>Turning state and predictions into responsive behavior for agile robots.</p></div>
                 <div class="project-grid">
                     <article class="project featured">
                         <div class="project-top"><span class="project-type">Current research · Esther tennis</span><span class="pill">Ongoing</span></div>
                         <h4>Egocentric perception to robot action</h4>
                         <p>Exploring a single factor-graph formulation that connects real-world egocentric perceptions with robot actions for tennis interaction.</p>
+                        <figure class="project-video">
+                            <iframe src="https://www.youtube-nocookie.com/embed/NXvUTSpug4o" title="Tennis Robot with Multi-Camera Ball Tracking" width="560" height="315" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <figcaption>Related demo: tennis robot with court-mounted multi-camera ball tracking.</figcaption>
+                        </figure>
+                        <div class="project-links"><a href="https://core-robotics-lab.github.io/Wheelchair-Tennis-Robot/">Esther project ↗</a><a href="https://www.youtube.com/watch?v=NXvUTSpug4o">Watch on YouTube ↗</a></div>
                     </article>
                     <article class="project">
                         <div class="project-top"><span class="project-type">Collaborative research</span><span class="pill">ICRA 2025</span></div>
                         <h4>Diverse robot striking motions</h4>
                         <p>Contributed to diffusion-based striking motions with kinematic constraint guidance for agile robot behavior.</p>
+                        <figure class="project-figure">
+                            <a href="assets/images/robot-striking-diffusion.png" target="_blank" rel="noopener" aria-label="View the robot striking framework at full size (opens in a new tab)">
+                                <img src="assets/images/robot-striking-diffusion.png" alt="Diffusion sampling with forward kinematics and constraint gradient guidance adjusts a robot's striking trajectory toward the desired ball position." width="1358" height="834" loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>Kinematic constraint gradient guidance for diffusion-based striking motions. Select to enlarge.</figcaption>
+                        </figure>
                         <div class="project-links"><a href="https://arxiv.org/abs/2409.15528">Read paper ↗</a></div>
                     </article>
                     <article class="project">
                         <div class="project-top"><span class="project-type">Collaborative research</span><span class="pill">ICRA 2025</span></div>
                         <h4>Wheelchair tennis navigation</h4>
                         <p>Contributed to diffusion-based navigation learned from broadcast videos with domain-knowledge transfer.</p>
+                        <figure class="project-figure">
+                            <a href="assets/images/wheelchair-tennis-navigation.png" target="_blank" rel="noopener" aria-label="View the wheelchair tennis navigation framework at full size (opens in a new tab)">
+                                <img src="assets/images/wheelchair-tennis-navigation.png" alt="Framework transferring ball and wheelchair motions extracted from broadcast videos into an imitation-learning navigation policy for a physical tennis robot." width="607" height="394" loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>Learning wheelchair navigation from broadcast videos and transferring it to the physical court. Select to enlarge.</figcaption>
+                        </figure>
                         <div class="project-links"><a href="https://arxiv.org/abs/2409.19771">Read paper ↗</a></div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="stage sense">
+                <div class="stage-aside"><span class="stage-index">02 / PERCEPTION</span><h3 class="stage-title">Learn to Sense</h3><p>Extracting reliable state from fast, incomplete, multi-sensor observations.</p></div>
+                <div class="project-grid">
+                    <article class="project featured">
+                        <div class="project-top"><span class="project-type">Multi-camera localization</span><span class="pill">IROS 2026 · Accepted</span></div>
+                        <h4>Real-Time Robot Localization from Multi-Camera Line Landmarks</h4>
+                        <p>Asynchronous robot pose estimation from visual line landmarks using probabilistic factor graphs and incremental GTSAM inference. A C++17/ROS 2 pipeline runs at 160 FPS with approximately 10 cm localization error without LiDAR on tennis courts; ControlNet-based pseudo-data supports line-segmentation training.</p>
+                        <figure class="project-figure">
+                            <a href="assets/images/court-line-localization.jpg" target="_blank" rel="noopener" aria-label="View the court-line localization overview at full size (opens in a new tab)">
+                                <img src="assets/images/court-line-localization.jpg" alt="Court-line semantics, IMU and wheel encoders connected in a factor graph, with onboard camera views and estimated robot trajectories on a tennis court." width="799" height="588" loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>Onboard localization using court-line semantics and factor-graph sensor fusion. Select to enlarge.</figcaption>
+                        </figure>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Autonomous driving</span><span class="pill">Stack AV · 2025</span></div>
+                        <h4>Learnable factor graphs for cuboid detection</h4>
+                        <p>Modeled cuboid distributions from camera and LiDAR observations, improving recall from approximately 50% to 90% while maintaining precision around 90%.</p>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Construction robotics</span><span class="pill">SkyMul · 2022</span></div>
+                        <h4>Rebar landmarks for robot vision</h4>
+                        <p>Built GPU-accelerated rebar-intersection detection and added rebar landmarks to visual–inertial SLAM with GTSAM factor graphs.</p>
+                        <figure class="project-video">
+                            <iframe src="https://www.youtube-nocookie.com/embed/31IRXI84VTo" title="Rebar Detection with RealSense Depth Camera" width="560" height="315" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <figcaption>Rebar pose detection using a RealSense depth camera.</figcaption>
+                        </figure>
+                        <div class="project-links"><a href="https://www.youtube.com/watch?v=31IRXI84VTo">Watch on YouTube ↗</a></div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="stage think">
+                <div class="stage-aside"><span class="stage-index">03 / PREDICTION</span><h3 class="stage-title">Learn to Think</h3><p>Combining geometric inference with models of how the physical world evolves.</p></div>
+                <div class="project-grid">
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Dynamics learning</span><span class="pill">ICRA 2025</span></div>
+                        <h4>Learning ball dynamics with differentiable factor graphs</h4>
+                        <p>Jointly learned a factor-graph estimator and neural predictor from camera observations, using roto-translational invariant representations for flight and bounce dynamics.</p>
+                        <figure class="project-figure">
+                            <a href="assets/images/ball-dynamics-prediction.png" target="_blank" rel="noopener" aria-label="View predicted ball trajectories at full size (opens in a new tab)">
+                                <img src="assets/images/ball-dynamics-prediction.png" alt="Predicted and measured ping-pong ball trajectories overlaid on a table for different topspin and sidespin settings." width="1000" height="844" loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>Figure 1: Ball trajectory predictions across different spin settings. Select to enlarge.</figcaption>
+                        </figure>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2409.16467">Read paper ↗</a></div>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">State estimation</span><span class="pill">ICRA 2024</span></div>
+                        <h4>Asynchronous multi-camera ball prediction</h4>
+                        <p>Fused camera observations and human-pose-derived spin priors in a factor graph, reducing landing-position prediction error by 63.6% versus an adaptive EKF baseline.</p>
+                        <figure class="project-video">
+                            <iframe src="https://www.youtube-nocookie.com/embed/j2p4hQNk_SI" title="Ball Localization and Trajectory Prediction with Factor Graphs and Human Poses" width="560" height="315" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <figcaption>Ball localization and trajectory prediction with factor graphs and human poses.</figcaption>
+                        </figure>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2401.17185">Read paper ↗</a><a href="https://www.youtube.com/watch?v=j2p4hQNk_SI">Watch on YouTube ↗</a></div>
                     </article>
                 </div>
             </div>
@@ -603,7 +639,7 @@
                 <div class="info-card">
                     <h3>Research experience</h3>
                     <ul class="info-list">
-                        <li><strong>Research Intern · Stack AV</strong><span class="small">Pittsburgh, PA · Summer 2025</span><br>Learnable factor-graph cuboid auto-labeling for autonomous driving.</li>
+                        <li><strong>Research Intern · Stack AV</strong><span class="small">Pittsburgh, PA · Summer 2025</span><br>Learnable factor-graph cuboid detection for autonomous driving.</li>
                         <li><strong>Computer Vision Intern · SkyMul</strong><span class="small">Peachtree Corners, GA · Summer 2022</span><br>Real-time rebar perception and landmark-aided robot localization.</li>
                         <li><strong>Teaching Assistant · Georgia Tech</strong><span class="small">CS 6601 Artificial Intelligence · 2023–2024</span></li>
                     </ul>
@@ -620,7 +656,7 @@
             <div class="education">
                 <h3>Education</h3>
                 <div class="degree-grid">
-                    <div class="degree"><strong>PhD Candidate, Robotics</strong><span>Georgia Institute of Technology · 2021–Present</span></div>
+                    <div class="degree"><strong>PhD Candidate, Robotics</strong><span>Georgia Institute of Technology · 2021–Present<br>Expected graduation: December 2027</span></div>
                     <div class="degree"><strong>MS, Mechanical Engineering and Materials Science</strong><span>Duke University · 2016–2018</span></div>
                     <div class="degree"><strong>BS, Energy and Power Engineering</strong><span>North China Electric Power University · 2012–2016</span></div>
                 </div>
@@ -644,6 +680,7 @@
                     <a href="mailto:qxiao33@gatech.edu">Email ↗</a>
                     <a href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&amp;hl">Scholar ↗</a>
                     <a href="https://github.com/qxiao2000">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/qingyu-xiao-3756a9119/">LinkedIn ↗</a>
                     <a href="https://sites.google.com/view/qxiao/home">Google Site ↗</a>
                 </div>
             </div>
