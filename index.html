@@ -2,548 +2,654 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qingyu Xiao — PhD Candidate in Robotics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102936">
+    <meta name="description" content="Qingyu Xiao is a Robotics PhD candidate at Georgia Tech working on robot perception, factor-graph inference, dynamics learning, and agile robot behavior.">
+    <title>Qingyu Xiao | Robotics Research</title>
     <style>
         :root {
-            --primary: #1a365d;
-            --secondary: #2c5282;
-            --accent: #c53030;
-            --text: #2d3748;
-            --light: #f7fafc;
-            --border: #e2e8f0;
-            --muted: #718096;
+            --ink: #142936;
+            --ink-soft: #40535e;
+            --muted: #667883;
+            --paper: #f6f8f7;
+            --white: #ffffff;
+            --line: #dfe7e5;
+            --teal: #087e79;
+            --teal-light: #e2f2ee;
+            --blue: #3a67a7;
+            --blue-light: #e8eff9;
+            --orange: #b76636;
+            --orange-light: #fbede3;
+            --shadow: 0 14px 38px rgba(15, 44, 52, 0.055);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.65;
-            color: var(--text);
-            background: #fff;
-            font-size: 15.5px;
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--secondary); text-decoration: none; }
-        a:hover { color: var(--accent); text-decoration: underline; }
-        p { margin-bottom: 0.9rem; }
-
-        /* Layout */
-        .container {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        section {
-            margin-bottom: 3.2rem;
-            padding-top: 0.5rem;
-        }
-
-        /* Header */
+        a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+        a:hover { color: #075f5b; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+        .skip-link { position: absolute; left: 18px; top: -60px; z-index: 100; padding: 8px 14px; background: white; }
+        .skip-link:focus { top: 12px; }
         .site-header {
-            padding: 2.5rem 0 1.2rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(246, 248, 247, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line);
         }
-        .site-header h1 {
-            font-size: 2rem;
+        .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .brand { display: inline-flex; gap: 12px; align-items: center; color: var(--ink); text-decoration: none; }
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: var(--ink);
+            color: white;
+            font-weight: 750;
+            font-size: 14px;
+            letter-spacing: -.04em;
+        }
+        .brand-name { font-size: 15px; font-weight: 750; letter-spacing: -.02em; }
+        .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 34px); }
+        .nav-links a { color: var(--ink-soft); font-size: 14px; font-weight: 650; text-decoration: none; }
+        .nav-links a:hover { color: var(--teal); }
+        .nav-links .nav-contact { color: var(--teal); }
+        main section { scroll-margin-top: 96px; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { content: ""; width: 17px; height: 2px; background: currentColor; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1, h2, .stage-title { letter-spacing: -.045em; }
+        h1, h2 { font-family: Georgia, Cambria, "Times New Roman", serif; }
+        h1 { font-size: clamp(45px, 5.2vw, 77px); line-height: 1.08; margin: 19px 0 22px; font-weight: 500; }
+        h2 { font-size: clamp(32px, 3.1vw, 46px); line-height: 1.16; margin: 12px 0 16px; font-weight: 500; }
+        h3 { line-height: 1.3; }
+        .hero {
+            padding: clamp(62px, 7vw, 110px) 0 85px;
+            background:
+                radial-gradient(circle at 91% 10%, rgba(148, 211, 198, .18), transparent 35%),
+                linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1.14fr .86fr; align-items: center; gap: clamp(36px, 6vw, 90px); }
+        .hero-title span { color: var(--teal); }
+        .hero-copy { max-width: 660px; color: var(--ink-soft); font-size: 18px; line-height: 1.75; }
+        .hero-copy strong { color: var(--ink); font-weight: 700; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 45px;
+            padding: 10px 18px;
+            border-radius: 9px;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--ink);
+            font-size: 14px;
             font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.3px;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s, background .2s;
         }
-        .site-header .subtitle {
-            font-size: 1rem;
-            color: var(--muted);
-            margin-top: 0.2rem;
-        }
-        .site-header .links {
-            margin-top: 0.8rem;
-            font-size: 0.9rem;
-        }
-        .site-header .links a {
-            margin-right: 1.4rem;
-            font-weight: 500;
-        }
-
-        /* Section titles */
-        h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.1rem;
-            padding-bottom: 0.35rem;
-            border-bottom: 2px solid var(--border);
-        }
-        h3 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin: 1.3rem 0 0.6rem;
-        }
-
-        /* About */
-        .about-wrap {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-        .about-portrait {
-            width: 170px;
-            height: 170px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            flex-shrink: 0;
-            background: var(--light);
-        }
-        .about-body {
-            flex: 1;
-        }
-        .about-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* News */
-        .news-list {
-            list-style: none;
-            margin-left: 0;
-        }
-        .news-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 5.5rem;
+        .button:hover { color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .button.primary { background: var(--ink); border-color: var(--ink); color: white; }
+        .button.primary:hover { color: white; background: #214355; }
+        .research-map {
             position: relative;
+            overflow: hidden;
+            padding: 30px 32px;
+            border-radius: 24px;
+            background: #102936;
+            color: white;
+            box-shadow: 0 24px 70px rgba(16, 41, 54, .18);
         }
-        .news-list .date {
+        .research-map::after {
+            content: "";
             position: absolute;
-            left: 0;
-            color: var(--muted);
-            font-weight: 500;
-            font-size: 0.9rem;
+            width: 290px;
+            height: 290px;
+            right: -135px;
+            top: -130px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 50%;
+            box-shadow: 0 0 0 40px rgba(255,255,255,.025), 0 0 0 80px rgba(255,255,255,.02);
+            pointer-events: none;
         }
-
-        /* Research interests */
-        .interest-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.8rem 0 1.2rem;
+        .map-heading { position: relative; z-index: 1; margin-bottom: 24px; color: #b9d7d5; font-size: 11px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+        .map-step {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 17px;
+            padding: 18px 0;
         }
-        .tag {
-            background: var(--light);
-            border: 1px solid var(--border);
-            padding: 0.25rem 0.7rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            font-weight: 500;
+        .map-step + .map-step { border-top: 1px solid rgba(255,255,255,.13); }
+        .step-number { color: #7dc9b9; font: 500 27px/1 Georgia, serif; }
+        .map-step:nth-of-type(3) .step-number { color: #a9c6f5; }
+        .map-step:nth-of-type(4) .step-number { color: #e9b28e; }
+        .map-step strong { display: block; margin-bottom: 1px; font-size: 18px; letter-spacing: -.02em; }
+        .map-step span:last-child { color: #b8cad1; font-size: 13px; line-height: 1.5; }
+        .map-foot { position: relative; z-index: 1; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.13); color: #b8cad1; font-size: 12px; }
+        .updates { margin-top: -17px; position: relative; z-index: 1; }
+        .updates-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            background: white;
+            box-shadow: var(--shadow);
         }
-
-        /* Project / experience cards */
-        .entry {
-            margin-bottom: 1.6rem;
+        .update { padding: 20px 24px; display: flex; align-items: flex-start; gap: 15px; }
+        .update + .update { border-left: 1px solid var(--line); }
+        .update-label { flex: none; color: var(--teal); font-size: 11px; letter-spacing: .1em; font-weight: 800; text-transform: uppercase; margin-top: 3px; }
+        .update p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+        .update strong { color: var(--ink); }
+        .stag-section { padding-top: 108px; }
+        .stag-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: end; margin-bottom: 30px; }
+        .stag-heading p { max-width: 490px; margin: 0; color: var(--ink-soft); }
+        .stag-card {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: white;
+            box-shadow: var(--shadow);
         }
-        .entry:last-child {
-            margin-bottom: 0;
-        }
-        .entry-header {
+        .stag-card-top {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 0.3rem;
+            gap: 10px 24px;
+            padding: 20px 27px;
+            border-bottom: 1px solid var(--line);
         }
-        .entry-title {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1rem;
+        .stag-card-top strong { font-size: 15px; letter-spacing: -.01em; }
+        .stag-card-top span { color: var(--muted); font-size: 12px; }
+        .stag-viewport { overflow-x: auto; overscroll-behavior-inline: contain; }
+        .stag-diagram { display: block; width: 100%; min-width: 860px; height: auto; }
+        .stag-diagram text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .stag-diagram .past-band { fill: #f0f8f6; }
+        .stag-diagram .future-band { fill: #f1f5fb; }
+        .stag-diagram .now-band { fill: #fff9f1; }
+        .stag-diagram .divider { stroke: #d9e3e4; stroke-width: 1.5; stroke-dasharray: 5 6; }
+        .stag-diagram .graph-edge { fill: none; stroke: #8fa1a9; stroke-width: 2.2; stroke-linecap: round; }
+        .stag-diagram .top-label { fill: #2f4b58; font-size: 15px; font-weight: 800; letter-spacing: 1.5px; }
+        .stag-diagram .sub-label { fill: #617987; font-size: 13px; }
+        .stag-diagram .now-label { fill: #a0612e; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; }
+        .stag-diagram .observation { fill: white; stroke: #168276; stroke-width: 2.3; }
+        .stag-diagram .observation-label { fill: #087e79; font-size: 16px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+        .stag-diagram .example-label { fill: #506b6b; font-size: 13px; text-anchor: middle; }
+        .stag-diagram .state { fill: white; stroke: #244552; stroke-width: 2.5; }
+        .stag-diagram .state.now { fill: #173744; stroke: #173744; stroke-width: 3; }
+        .stag-diagram .state-label { fill: #173744; font-size: 19px; font-weight: 750; text-anchor: middle; dominant-baseline: middle; }
+        .stag-diagram .state-label.now { fill: white; }
+        .stag-diagram .factor { stroke-width: 2.4; rx: 7; }
+        .stag-diagram .factor.measurement { fill: #e9edf9; stroke: #526fa5; }
+        .stag-diagram .factor.dynamics { fill: #e9edf9; stroke: #526fa5; }
+        .stag-diagram .factor.goal { fill: #fbeadf; stroke: #b56b40; }
+        .stag-diagram .factor-label { fill: #244552; font-size: 17px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; }
+        .stag-diagram .control-known { fill: #f4f8f7; stroke: #78918e; stroke-width: 2; }
+        .stag-diagram .control-planned { fill: #fff; stroke: #b56b40; stroke-width: 2.4; }
+        .stag-diagram .control-label { fill: #244552; font-size: 17px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+        .stag-diagram .small-label { fill: #5a707a; font-size: 13px; text-anchor: middle; }
+        .stag-diagram .think-ribbon { fill: #e8eff9; }
+        .stag-diagram .think-label { fill: #365e96; font-size: 14px; font-weight: 750; text-anchor: middle; }
+        .stag-lens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+        .stag-lens-item { padding: 19px 25px 20px; }
+        .stag-lens-item + .stag-lens-item { border-left: 1px solid var(--line); }
+        .stag-lens-item strong { display: block; margin-bottom: 5px; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+        .stag-lens-item:nth-child(1) strong { color: var(--teal); }
+        .stag-lens-item:nth-child(2) strong { color: var(--blue); }
+        .stag-lens-item:nth-child(3) strong { color: var(--orange); }
+        .stag-lens-item p { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.55; }
+        .stag-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            padding: 20px 27px 22px;
+            border-top: 1px solid var(--line);
         }
-        .entry-venue {
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 500;
+        .stag-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--ink-soft); font-size: 12px; }
+        .stag-legend span { display: inline-flex; align-items: center; gap: 7px; }
+        .legend-shape { width: 11px; height: 11px; display: inline-block; border: 2px solid; flex: none; }
+        .legend-state { border-color: #244552; border-radius: 50%; }
+        .legend-measurement { border-color: #168276; background: white; border-radius: 50%; }
+        .legend-dynamics { border-color: #526fa5; background: #e9edf9; border-radius: 3px; }
+        .legend-goal { border-color: #b56b40; background: #fbeadf; border-radius: 3px; }
+        .stag-credit { max-width: 390px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+        .stag-swipe { display: none; }
+        .section { padding: 108px 0 0; }
+        .section-header { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 28px; margin-bottom: 42px; }
+        .section-header p { max-width: 480px; margin: 0; color: var(--ink-soft); }
+        .stage {
+            display: grid;
+            grid-template-columns: 248px 1fr;
+            gap: clamp(24px, 4vw, 58px);
+            padding: 32px 0 42px;
+            border-top: 1px solid var(--line);
         }
-        .entry-meta {
-            color: var(--muted);
-            font-size: 0.9rem;
-            margin: 0.15rem 0 0.4rem;
+        .stage-index { display: inline-block; margin-bottom: 10px; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+        .sense .stage-index, .sense .stage-title { color: var(--teal); }
+        .think .stage-index, .think .stage-title { color: var(--blue); }
+        .act .stage-index, .act .stage-title { color: var(--orange); }
+        .stage-title { font-size: 31px; font-weight: 750; line-height: 1.1; margin: 0 0 12px; }
+        .stage-aside p { max-width: 220px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+        .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .project {
+            min-width: 0;
+            padding: 22px 23px 21px;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            background: var(--white);
+            box-shadow: 0 5px 16px rgba(15,44,52,.025);
+            transition: transform .2s, box-shadow .2s;
         }
-        .entry-body {
-            font-size: 0.95rem;
+        .project:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .project.featured { grid-column: 1 / -1; }
+        .project-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 13px; }
+        .project-type { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+        .pill { display: inline-block; padding: 4px 9px; border-radius: 99px; font-size: 11px; font-weight: 750; white-space: nowrap; }
+        .sense .pill { color: #066a66; background: var(--teal-light); }
+        .think .pill { color: #3b6199; background: var(--blue-light); }
+        .act .pill { color: #9d4f26; background: var(--orange-light); }
+        .project h4 { font-size: 18px; line-height: 1.35; margin: 0 0 9px; letter-spacing: -.02em; }
+        .project p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+        .project-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; }
+        .project-links a { font-size: 13px; font-weight: 750; text-decoration: none; }
+        .project-links a:hover { text-decoration: underline; }
+        .publication-section { padding: 105px 0 0; }
+        .paper-list { list-style: none; padding: 0; margin: 30px 0 0; border-top: 1px solid var(--line); }
+        .paper {
+            display: grid;
+            grid-template-columns: 94px 1fr auto;
+            gap: 22px;
+            align-items: start;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--line);
         }
-        .entry-body ul {
-            margin-left: 1.3rem;
-            margin-top: 0.3rem;
+        .paper-year { color: var(--muted); font-size: 14px; font-weight: 750; padding-top: 3px; }
+        .paper-title { margin: 0 0 5px; font-size: 16px; font-weight: 750; line-height: 1.45; }
+        .paper-meta { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+        .paper-link { justify-self: end; margin-top: 2px; font-size: 13px; font-weight: 750; text-decoration: none; white-space: nowrap; }
+        .paper-link:hover { text-decoration: underline; }
+        .paper-link.empty { color: var(--muted); font-weight: 600; }
+        .scholar-link { display: inline-block; margin-top: 19px; font-size: 14px; font-weight: 750; text-decoration: none; }
+        .background-section { padding: 105px 0; }
+        .background-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-card { padding: 28px 30px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+        .info-card h3 { font-size: 20px; margin: 0 0 20px; }
+        .info-list { list-style: none; padding: 0; margin: 0; }
+        .info-list li { padding: 13px 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 14px; }
+        .info-list li:first-child { border-top: 0; padding-top: 0; }
+        .info-list strong { display: block; color: var(--ink); font-size: 15px; }
+        .info-list a { font-weight: 700; }
+        .info-list .small { color: var(--muted); font-size: 13px; }
+        .education { margin-top: 20px; padding: 26px 30px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+        .education h3 { margin: 0 0 16px; font-size: 20px; }
+        .degree-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .degree { padding-top: 13px; border-top: 1px solid var(--line); }
+        .degree strong { display: block; font-size: 14px; }
+        .degree span { color: var(--muted); font-size: 13px; }
+        .recognition { margin-top: 25px; padding-top: 18px; border-top: 1px solid var(--line); }
+        .recognition h4 { margin: 0 0 8px; font-size: 14px; }
+        .recognition ul { display: flex; flex-wrap: wrap; gap: 6px 22px; padding: 0; margin: 0; list-style: none; color: var(--muted); font-size: 13px; }
+        .site-footer { background: var(--ink); color: #c7d6dc; padding: 47px 0 28px; }
+        .footer-grid { display: flex; align-items: start; justify-content: space-between; gap: 28px; }
+        .footer-grid h2 { color: white; font-size: 30px; margin: 0 0 7px; }
+        .footer-grid p { max-width: 550px; margin: 0; color: #b9cbd0; font-size: 14px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 14px 21px; justify-content: flex-end; padding-top: 11px; }
+        .footer-links a { color: white; font-size: 14px; font-weight: 700; text-decoration: none; }
+        .footer-links a:hover { text-decoration: underline; }
+        .footer-bottom { margin-top: 39px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.15); color: #99b0b9; font-size: 12px; }
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .research-map { max-width: 650px; }
+            .stage { grid-template-columns: 1fr; gap: 8px; }
+            .stage-aside p { max-width: 650px; }
         }
-        .entry-body li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* Publications */
-        .pub-list {
-            list-style: none;
-            counter-reset: pub;
-        }
-        .pub {
-            margin-bottom: 1.4rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-        .pub::before {
-            counter-increment: pub;
-            content: counter(pub) ".";
-            position: absolute;
-            left: 0;
-            top: 0.1rem;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .pub-title {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1rem;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-        .pub-authors {
-            font-size: 0.95rem;
-            color: var(--text);
-            margin-bottom: 0.15rem;
-        }
-        .pub-authors strong {
-            color: var(--primary);
-        }
-        .pub-venue {
-            font-size: 0.9rem;
-            color: var(--muted);
-            font-style: italic;
-            margin-bottom: 0.3rem;
-        }
-        .pub-note {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-        .pub-links {
-            font-size: 0.88rem;
-            margin-top: 0.2rem;
-        }
-        .pub-links a {
-            margin-right: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* Education compact */
-        .edu-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-        }
-        .edu-table td {
-            padding: 0.35rem 0;
-            vertical-align: top;
-        }
-        .edu-table td:first-child {
-            font-weight: 600;
-            color: var(--primary);
-            white-space: nowrap;
-            padding-right: 1rem;
-        }
-        .edu-table td:last-child {
-            color: var(--muted);
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        /* Awards / service */
-        .compact-list {
-            list-style: disc;
-            margin-left: 1.3rem;
-        }
-        .compact-list li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-            margin-top: 1rem;
-        }
-
-        /* Responsive */
         @media (max-width: 640px) {
-            .about-wrap { flex-direction: column; align-items: center; text-align: center; }
-            .entry-header { flex-direction: column; align-items: flex-start; }
-            .news-list li { padding-left: 4rem; }
+            .container { width: min(100% - 32px, 1180px); }
+            .nav { align-items: flex-start; padding: 13px 0; flex-direction: column; gap: 12px; }
+            .nav-links { gap: 12px 18px; }
+            .nav-links a { font-size: 13px; }
+            .hero-grid { grid-template-columns: minmax(0, 1fr); }
+            .hero-grid > * { min-width: 0; }
+            .hero { padding: 58px 0 65px; }
+            .hero-copy { font-size: 16px; }
+            .research-map { padding: 25px; }
+            .updates-inner, .section-header, .project-grid, .background-grid, .degree-grid { grid-template-columns: 1fr; }
+            .update + .update { border-left: 0; border-top: 1px solid var(--line); }
+            .stag-section { padding-top: 75px; }
+            .stag-heading { grid-template-columns: 1fr; gap: 0; }
+            .stag-card-top, .stag-meta { padding-inline: 18px; }
+            .stag-lens { grid-template-columns: 1fr; }
+            .stag-lens-item { padding: 14px 18px; }
+            .stag-lens-item + .stag-lens-item { border-left: 0; border-top: 1px solid var(--line); }
+            .stag-swipe { display: inline; }
+            .section, .publication-section, .background-section { padding-top: 75px; }
+            .project.featured { grid-column: auto; }
+            .paper { grid-template-columns: 50px 1fr; gap: 12px; }
+            .paper-link { grid-column: 2; justify-self: start; margin-top: -5px; }
+            .footer-grid { flex-direction: column; }
+            .footer-links { justify-content: flex-start; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .button, .project { transition: none; }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-
-    <!-- ====== HEADER ====== -->
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-        <h1>Qingyu Xiao</h1>
-        <div class="subtitle">PhD Candidate in Robotics · Georgia Institute of Technology · Atlanta, GA</div>
-        <div class="links">
-            <a href="mailto:qxiao33@gatech.edu">Email</a>
-            <a href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&hl">Google Scholar</a>
-            <a href="https://github.com/qxiao2000">GitHub</a>
-            <a href="https://sites.google.com/view/qxiao/home">Google Site</a>
-            <a href="cv.pdf">CV (PDF)</a>
-        </div>
+        <nav class="container nav" aria-label="Main navigation">
+            <a class="brand" href="#top"><span class="brand-mark">QX</span><span class="brand-name">Qingyu Xiao</span></a>
+            <div class="nav-links">
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#background">Background</a>
+                <a class="nav-contact" href="mailto:qxiao33@gatech.edu">Get in touch ↗</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- ====== ABOUT ====== -->
-    <section id="about">
-        <div class="about-wrap">
-            <div class="about-body">
-                <p>
-                    I am a PhD candidate in Robotics at <strong>Georgia Tech</strong>, advised by
-                    <a href="https://faculty.cc.gatech.edu/~matthew.gombolay/">Prof. Matthew Gombolay</a>.
-                    My research develops <strong>probabilistic state estimation</strong> and
-                    <strong>factor-graph inference</strong> methods for real-time robotic perception and prediction.
-                </p>
-                <p>
-                    I build end-to-end systems that combine geometric vision, probabilistic inference, and modern learning
-                    to track and predict fast-moving objects from multiple cameras. My work has been deployed on
-                    tennis-playing robots, autonomous vehicles, and construction robots, with publications at
-                    <strong>ICRA</strong> and a draft for <strong>RSS 2026</strong>.
-                </p>
+    <main id="main">
+        <section class="hero" id="top">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Robotics PhD Candidate · Georgia Tech</span>
+                    <h1 class="hero-title">Robots that <span>sense</span>, think, and act.</h1>
+                    <p class="hero-copy">
+                        I am <strong>Qingyu Xiao</strong>, a Robotics PhD candidate at Georgia Tech advised by
+                        <a href="https://faculty.cc.gatech.edu/~matthew.gombolay/">Prof. Matthew Gombolay</a>.
+                        I develop structured approaches to robot perception and prediction, and explore how
+                        they connect to action in agile, real-world settings.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#research">Explore my research <span aria-hidden="true">↘</span></a>
+                        <a class="button" href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&amp;hl">Google Scholar <span aria-hidden="true">↗</span></a>
+                        <a class="button" href="mailto:qxiao33@gatech.edu">Email me <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+                <div class="research-map" aria-label="Research throughline: learn to sense, learn to think, learn to act">
+                    <div class="map-heading">Research throughline</div>
+                    <div class="map-step"><div class="step-number">01</div><div><strong>Sense</strong><span>Visual measurements · state estimation · multi-camera localization</span></div></div>
+                    <div class="map-step"><div class="step-number">02</div><div><strong>Think</strong><span>Differentiable factor graphs · learned dynamics · prediction</span></div></div>
+                    <div class="map-step"><div class="step-number">03</div><div><strong>Act</strong><span>Agile robot behavior · egocentric perception-to-action research</span></div></div>
+                    <div class="map-foot">Distinct projects, one question: how can robots close the loop?</div>
+                </div>
             </div>
-            <img src="profile.jpg" alt="Qingyu Xiao" class="about-portrait" onerror="this.style.display='none'">
-        </div>
-    </section>
+        </section>
 
-    <!-- ====== NEWS ====== -->
-    <section id="news">
-        <h2>News</h2>
-        <ul class="news-list">
-            <li><span class="date">Jun 2026</span> Drafted RSS 2026 submission on agile robot localization with multi-camera line landmarks.</li>
-            <li><span class="date">Summer 2025</span> Research intern at <strong>Stack AV</strong>, Pittsburgh — built learnable factor-graph cuboid auto-labeling for autonomous driving.</li>
-            <li><span class="date">May 2025</span> Co-organized <strong>RoboLetics 2.0</strong> workshop at ICRA 2025.</li>
-            <li><span class="date">May 2024</span> Two first-author ICRA papers on ball dynamics and multi-camera tracking accepted.</li>
-        </ul>
-    </section>
-
-    <!-- ====== RESEARCH ====== -->
-    <section id="research">
-        <h2>Research</h2>
-
-        <p>My work sits at the intersection of probabilistic inference, geometric vision, and real-time systems:</p>
-        <div class="interest-tags">
-            <span class="tag">Factor-Graph State Estimation</span>
-            <span class="tag">Multi-Camera Tracking</span>
-            <span class="tag">Dynamics Prediction</span>
-            <span class="tag">GTSAM / Incremental Solvers</span>
-            <span class="tag">ROS / ROS2</span>
-        </div>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Agile Robot Localization with Multi-Camera Line Landmarks</span>
-                <span class="entry-venue">Draft · RSS 2026</span>
-            </div>
-            <div class="entry-body">
-                <p>An asynchronous pose estimator using probabilistic factor graphs and GTSAM incremental solvers achieves ~10 cm localization error without LiDAR in tennis-court settings at 160 FPS. Also developed a ControlNet-based pseudo-data generation pipeline to augment training of line segmentation models.</p>
+        <div class="container updates" aria-label="Recent updates">
+            <div class="updates-inner">
+                <div class="update"><span class="update-label">IROS 2026</span><p><strong>Real-Time Robot Localization from Multi-Camera Line Landmarks</strong> accepted.</p></div>
+                <div class="update"><span class="update-label">CoRL 2026</span><p>Organizing <strong><a href="https://roboletics.github.io/corl2026/">RoboLetics 3.0</a></strong>, a workshop on benchmarks for agile physical HRI.</p></div>
             </div>
         </div>
 
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Learning Ball Dynamics with Differentiable Factor Graphs</span>
-                <span class="entry-venue">ICRA 2025</span>
+        <section class="container stag-section" aria-labelledby="stag-title">
+            <div class="stag-heading">
+                <div><span class="eyebrow">Current research direction</span><h2 id="stag-title">One graph from sensing to action</h2></div>
+                <p>A STAG-inspired sketch for my ongoing Esther tennis work: sensor cues and learned visual outputs become measurements; factors connect them across time to estimate state and reason about future actions.</p>
             </div>
-            <div class="entry-body">
-                <p>A framework that jointly learns a factor-graph estimator and a neural predictor using roto-translational invariant representations. Improves 86.7% over LSTM and 64.8% over diffusion-model baselines on real-world ping-pong and tennis dynamics.</p>
+            <div class="stag-card">
+                <div class="stag-card-top">
+                    <strong>My research as a rolling factor graph</strong>
+                    <span>Observe → connect and estimate → plan and act <span class="stag-swipe">· Swipe to explore →</span></span>
+                </div>
+                <div class="stag-viewport" role="region" aria-label="Scrollable factor graph diagram" tabindex="0">
+                    <svg class="stag-diagram" viewBox="0 0 1120 455" role="img" aria-labelledby="stag-graphic-title stag-graphic-desc" xmlns="http://www.w3.org/2000/svg">
+                        <title id="stag-graphic-title">Qingyu Xiao's sense–think–act research represented as a rolling factor graph</title>
+                        <desc id="stag-graphic-desc">Illustrative sensor features and neural-network outputs form observed measurement nodes. Measurement factors connect them to states, while dynamics factors connect states through time. The estimated current state leads into goal-constrained future states and controls to optimize. Tennis examples are conceptual; the Esther integration is ongoing.</desc>
+                        <rect class="past-band" x="22" y="15" width="524" height="405" rx="17"/>
+                        <rect class="future-band" x="574" y="15" width="524" height="405" rx="17"/>
+                        <rect class="now-band" x="530" y="15" width="60" height="405" rx="15"/>
+                        <line class="divider" x1="560" y1="75" x2="560" y2="410"/>
+                        <text class="top-label" x="58" y="51">01 / LEARN TO SENSE</text>
+                        <text class="sub-label" x="58" y="75">Sensor cues or learned visual outputs</text>
+                        <text class="top-label" x="726" y="51">03 / LEARN TO ACT</text>
+                        <text class="sub-label" x="726" y="75">Goal-guided future states and controls</text>
+                        <text class="now-label" x="560" y="43" text-anchor="middle">NOW</text>
+
+                        <path class="graph-edge" d="M120 270 H1000 M120 153 V176 M340 153 V176 M560 153 V176 M120 210 V242 M340 210 V242 M560 210 V240 M780 210 V242 M1000 210 V242 M230 286 V336 M450 286 V336 M670 286 V336 M890 286 V336"/>
+
+                        <text class="example-label" x="120" y="110">camera features</text>
+                        <text class="example-label" x="340" y="110">NN line mask</text>
+                        <text class="example-label" x="560" y="110">NN ball detection</text>
+                        <circle class="observation" cx="120" cy="135" r="18"/>
+                        <circle class="observation" cx="340" cy="135" r="18"/>
+                        <circle class="observation" cx="560" cy="135" r="18"/>
+                        <text class="observation-label" x="120" y="136">z</text>
+                        <text class="observation-label" x="340" y="136">z</text>
+                        <text class="observation-label" x="560" y="136">z</text>
+
+                        <rect class="factor measurement" x="103" y="176" width="34" height="34"/>
+                        <rect class="factor measurement" x="323" y="176" width="34" height="34"/>
+                        <rect class="factor measurement" x="543" y="176" width="34" height="34"/>
+                        <text class="factor-label" x="120" y="194">h</text>
+                        <text class="factor-label" x="340" y="194">h</text>
+                        <text class="factor-label" x="560" y="194">h</text>
+
+                        <text class="example-label" x="780" y="160">intercept target</text>
+                        <text class="example-label" x="1000" y="160">motion limits</text>
+                        <rect class="factor goal" x="763" y="176" width="34" height="34"/>
+                        <rect class="factor goal" x="983" y="176" width="34" height="34"/>
+                        <text class="factor-label" x="780" y="194">g</text>
+                        <text class="factor-label" x="1000" y="194">g</text>
+
+                        <rect class="factor dynamics" x="213" y="253" width="34" height="34"/>
+                        <rect class="factor dynamics" x="433" y="253" width="34" height="34"/>
+                        <rect class="factor dynamics" x="653" y="253" width="34" height="34"/>
+                        <rect class="factor dynamics" x="873" y="253" width="34" height="34"/>
+                        <text class="factor-label" x="230" y="271">f</text>
+                        <text class="factor-label" x="450" y="271">f</text>
+                        <text class="factor-label" x="670" y="271">f</text>
+                        <text class="factor-label" x="890" y="271">f</text>
+
+                        <circle class="state" cx="120" cy="270" r="28"/>
+                        <circle class="state" cx="340" cy="270" r="28"/>
+                        <circle class="state now" cx="560" cy="270" r="30"/>
+                        <circle class="state" cx="780" cy="270" r="28"/>
+                        <circle class="state" cx="1000" cy="270" r="28"/>
+                        <text class="state-label" x="120" y="271">xₜ₋₂</text>
+                        <text class="state-label" x="340" y="271">xₜ₋₁</text>
+                        <text class="state-label now" x="560" y="271">xₜ</text>
+                        <text class="state-label" x="780" y="271">xₜ₊₁</text>
+                        <text class="state-label" x="1000" y="271">xₜ₊₂</text>
+
+                        <circle class="control-known" cx="230" cy="355" r="19"/>
+                        <circle class="control-known" cx="450" cy="355" r="19"/>
+                        <circle class="control-planned" cx="670" cy="355" r="19"/>
+                        <circle class="control-planned" cx="890" cy="355" r="19"/>
+                        <text class="control-label" x="230" y="356">u</text>
+                        <text class="control-label" x="450" y="356">u</text>
+                        <text class="control-label" x="670" y="356">u</text>
+                        <text class="control-label" x="890" y="356">u</text>
+                        <text class="small-label" x="340" y="395">known past controls</text>
+                        <text class="small-label" x="780" y="395">future actions to optimize</text>
+                        <rect class="think-ribbon" x="215" y="425" width="690" height="25" rx="12"/>
+                        <text class="think-label" x="560" y="443">02 / LEARN TO THINK · measurement + dynamics factors connect evidence to estimated states</text>
+                    </svg>
+                </div>
+                <div class="stag-lens" aria-label="Research interpretation of the graph">
+                    <div class="stag-lens-item"><strong>01 · Learn to Sense</strong><p>Multi-camera landmarks and learned line segmentation turn visual input into usable measurements. Ball detections are one illustrative tennis input.</p></div>
+                    <div class="stag-lens-item"><strong>02 · Learn to Think</strong><p>Measurement and dynamics factors connect observations and states across time, supporting estimation and prediction.</p></div>
+                    <div class="stag-lens-item"><strong>03 · Learn to Act</strong><p>Future goals can shape optimized robot actions—for example, intercepting a ball while respecting motion limits.</p></div>
+                </div>
+                <div class="stag-meta">
+                    <div class="stag-legend" aria-label="Diagram legend">
+                        <span><i class="legend-shape legend-state" aria-hidden="true"></i>State / control node</span>
+                        <span><i class="legend-shape legend-measurement" aria-hidden="true"></i>Observed measurement z</span>
+                        <span><i class="legend-shape legend-dynamics" aria-hidden="true"></i>Measurement / dynamics factor</span>
+                        <span><i class="legend-shape legend-goal" aria-hidden="true"></i>Goal factor</span>
+                    </div>
+                    <p class="stag-credit">Conceptual redraw inspired by <a href="https://gtsam.org/2026/04/21/factor-graphs-and-world-models.html">Frank Dellaert’s STAG article</a>. Tennis objectives and ball detections are illustrative; Esther integration is ongoing research.</p>
+                </div>
             </div>
+        </section>
+
+        <section class="container section" id="research">
+            <div class="section-header">
+                <div><span class="eyebrow">Research</span><h2>From perception to action</h2></div>
+                <p>My work spans three connected directions across separate projects. My current Esther tennis research explores joining real-world egocentric perceptions and robot actions in one factor graph.</p>
+            </div>
+
+            <div class="stage sense">
+                <div class="stage-aside"><span class="stage-index">01 / PERCEPTION</span><h3 class="stage-title">Learn to Sense</h3><p>Extracting reliable state from fast, incomplete, multi-sensor observations.</p></div>
+                <div class="project-grid">
+                    <article class="project featured">
+                        <div class="project-top"><span class="project-type">Multi-camera localization</span><span class="pill">IROS 2026 · Accepted</span></div>
+                        <h4>Real-Time Robot Localization from Multi-Camera Line Landmarks</h4>
+                        <p>Asynchronous robot pose estimation from visual line landmarks using probabilistic factor graphs and incremental GTSAM inference. A C++17/ROS 2 pipeline runs at 160 FPS with approximately 10 cm localization error without LiDAR on tennis courts; ControlNet-based pseudo-data supports line-segmentation training.</p>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Autonomous driving</span><span class="pill">Stack AV · 2025</span></div>
+                        <h4>Learnable factor graphs for cuboid auto-labeling</h4>
+                        <p>Modeled cuboid distributions from camera and LiDAR observations, improving recall from approximately 50% to 90% while maintaining precision around 90%.</p>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Construction robotics</span><span class="pill">SkyMul · 2022</span></div>
+                        <h4>Rebar landmarks for robot vision</h4>
+                        <p>Built GPU-accelerated rebar-intersection detection and added rebar landmarks to visual–inertial SLAM with GTSAM factor graphs.</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="stage think">
+                <div class="stage-aside"><span class="stage-index">02 / PREDICTION</span><h3 class="stage-title">Learn to Think</h3><p>Combining geometric inference with models of how the physical world evolves.</p></div>
+                <div class="project-grid">
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Dynamics learning</span><span class="pill">ICRA 2025</span></div>
+                        <h4>Learning ball dynamics with differentiable factor graphs</h4>
+                        <p>Jointly learned a factor-graph estimator and neural predictor from camera observations, using roto-translational invariant representations for flight and bounce dynamics.</p>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2409.16467">Read paper ↗</a></div>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">State estimation</span><span class="pill">ICRA 2024</span></div>
+                        <h4>Asynchronous multi-camera ball prediction</h4>
+                        <p>Fused camera observations and human-pose-derived spin priors in a factor graph, reducing landing-position prediction error by 63.6% versus an adaptive EKF baseline.</p>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2401.17185">Read paper ↗</a></div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="stage act">
+                <div class="stage-aside"><span class="stage-index">03 / BEHAVIOR</span><h3 class="stage-title">Learn to Act</h3><p>Turning state and predictions into responsive behavior for agile robots.</p></div>
+                <div class="project-grid">
+                    <article class="project featured">
+                        <div class="project-top"><span class="project-type">Current research · Esther tennis</span><span class="pill">Ongoing</span></div>
+                        <h4>Egocentric perception to robot action</h4>
+                        <p>Exploring a single factor-graph formulation that connects real-world egocentric perceptions with robot actions for tennis interaction.</p>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Collaborative research</span><span class="pill">ICRA 2025</span></div>
+                        <h4>Diverse robot striking motions</h4>
+                        <p>Contributed to diffusion-based striking motions with kinematic constraint guidance for agile robot behavior.</p>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2409.15528">Read paper ↗</a></div>
+                    </article>
+                    <article class="project">
+                        <div class="project-top"><span class="project-type">Collaborative research</span><span class="pill">ICRA 2025</span></div>
+                        <h4>Wheelchair tennis navigation</h4>
+                        <p>Contributed to diffusion-based navigation learned from broadcast videos with domain-knowledge transfer.</p>
+                        <div class="project-links"><a href="https://arxiv.org/abs/2409.19771">Read paper ↗</a></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="container publication-section" id="publications">
+            <span class="eyebrow">Selected publications</span>
+            <h2>Research outputs</h2>
+            <ol class="paper-list">
+                <li class="paper"><span class="paper-year">2026</span><div><p class="paper-title">Real-Time Robot Localization from Multi-Camera Line Landmarks</p><p class="paper-meta">IROS 2026 · Accepted</p></div><span class="paper-link empty">Accepted</span></li>
+                <li class="paper"><span class="paper-year">2025</span><div><p class="paper-title">Learning Dynamics of a Ball with Differentiable Factor Graph and Roto-Translational Invariant Representations</p><p class="paper-meta">Qingyu Xiao, Zixuan Wu, Matthew Gombolay · ICRA 2025</p></div><a class="paper-link" href="https://arxiv.org/abs/2409.16467">Paper ↗</a></li>
+                <li class="paper"><span class="paper-year">2025</span><div><p class="paper-title">Learning Diverse Robot Striking Motions with Diffusion Models and Kinematically Constrained Gradient Guidance</p><p class="paper-meta">Kin Man Lee, Sean Ye, Qingyu Xiao, et al. · ICRA 2025</p></div><a class="paper-link" href="https://arxiv.org/abs/2409.15528">Paper ↗</a></li>
+                <li class="paper"><span class="paper-year">2025</span><div><p class="paper-title">Learning Wheelchair Tennis Navigation from Broadcast Videos with Domain Knowledge Transfer and Diffusion Motion Planning</p><p class="paper-meta">Zixuan Wu, Zulfiqar Zaidi, Adithya Patil, Qingyu Xiao, Matthew Gombolay · ICRA 2025</p></div><a class="paper-link" href="https://arxiv.org/abs/2409.19771">Paper ↗</a></li>
+                <li class="paper"><span class="paper-year">2024</span><div><p class="paper-title">Multi-Camera Asynchronous Ball Localization and Trajectory Prediction with Factor Graphs and Human Poses</p><p class="paper-meta">Qingyu Xiao, Zulfiqar Zaidi, Matthew Gombolay · ICRA 2024</p></div><a class="paper-link" href="https://arxiv.org/abs/2401.17185">Paper ↗</a></li>
+                <li class="paper"><span class="paper-year">2024</span><div><p class="paper-title">Interactive and Explainable Robot Learning: A Comprehensive Review</p><p class="paper-meta">Esmaeil Seraj, Kin Man Lee, Zulfiqar Zaidi, Qingyu Xiao, et al. · Foundations and Trends in Robotics</p></div><a class="paper-link" href="https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/d/958/files/2024/06/Interactive_and_Explainable_Robot_Learning_Review_Paper.pdf">PDF ↗</a></li>
+            </ol>
+            <a class="scholar-link" href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&amp;hl">Full publication list on Google Scholar ↗</a>
+        </section>
+
+        <section class="container background-section" id="background">
+            <span class="eyebrow">Background</span>
+            <h2>Experience and service</h2>
+            <div class="background-grid">
+                <div class="info-card">
+                    <h3>Research experience</h3>
+                    <ul class="info-list">
+                        <li><strong>Research Intern · Stack AV</strong><span class="small">Pittsburgh, PA · Summer 2025</span><br>Learnable factor-graph cuboid auto-labeling for autonomous driving.</li>
+                        <li><strong>Computer Vision Intern · SkyMul</strong><span class="small">Peachtree Corners, GA · Summer 2022</span><br>Real-time rebar perception and landmark-aided robot localization.</li>
+                        <li><strong>Teaching Assistant · Georgia Tech</strong><span class="small">CS 6601 Artificial Intelligence · 2023–2024</span></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Academic service</h3>
+                    <ul class="info-list">
+                        <li><strong>Workshop Organizer · <a href="https://roboletics.github.io/corl2026/">RoboLetics 3.0</a></strong><span class="small">Benchmarks for Agile Physical Human-Robot Interaction · CoRL 2026</span></li>
+                        <li><strong>IROS 2026 Session Chair and Co-Chair</strong><span class="small">Chair: Vision Systems for Robotics and Industrial Applications.<br>Co-Chair: Visual Place Recognition Through Novel Sensing.</span></li>
+                        <li><strong>Workshop Organizer · <a href="https://sites.google.com/view/roboletics2/home">RoboLetics 2.0</a></strong><span class="small">Athletic Robots and Dynamic Motor Skills · ICRA 2025</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="education">
+                <h3>Education</h3>
+                <div class="degree-grid">
+                    <div class="degree"><strong>PhD Candidate, Robotics</strong><span>Georgia Institute of Technology · 2021–Present</span></div>
+                    <div class="degree"><strong>MS, Mechanical Engineering and Materials Science</strong><span>Duke University · 2016–2018</span></div>
+                    <div class="degree"><strong>BS, Energy and Power Engineering</strong><span>North China Electric Power University · 2012–2016</span></div>
+                </div>
+                <div class="recognition">
+                    <h4>Honors and awards</h4>
+                    <ul>
+                        <li>ASME Journal of Mechanisms and Robotics Best Paper Award, Honorable Mention (2023)</li>
+                        <li>ASME-CIE Hackathon, First Place (2022)</li>
+                        <li>ASME-CIE Hackathon, Third Place (2021)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div><h2>Let’s connect.</h2><p>Interested in robot perception, structured inference, or agile physical AI? I would be glad to hear from you.</p></div>
+                <div class="footer-links">
+                    <a href="mailto:qxiao33@gatech.edu">Email ↗</a>
+                    <a href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&amp;hl">Scholar ↗</a>
+                    <a href="https://github.com/qxiao2000">GitHub ↗</a>
+                    <a href="https://sites.google.com/view/qxiao/home">Google Site ↗</a>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 Qingyu Xiao · Georgia Institute of Technology</div>
         </div>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Multi-Camera Ball Tracking with Human Pose and Factor Graphs</span>
-                <span class="entry-venue">ICRA 2024</span>
-            </div>
-            <div class="entry-body">
-                <p>An asynchronous multi-camera method for estimating fast-moving ball states that achieves 63.6% prediction improvement over EKF baselines, with ~5 ms real-time inference via GTSAM incremental solvers.</p>
-            </div>
-        </div>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Cuboid Auto-Labeling with Learnable Factor Graphs</span>
-                <span class="entry-venue">Stack AV · Summer 2025</span>
-            </div>
-            <div class="entry-body">
-                <p>Structured probabilistic graphical models for cuboid distributions conditioned on camera and LiDAR observations. Improved recall from ~50% to ~90% while maintaining ~90% precision.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== PUBLICATIONS ====== -->
-    <section id="publications">
-        <h2>Publications</h2>
-
-        <ol class="pub-list">
-            <li class="pub">
-                <span class="pub-title">
-                    Learning Dynamics of a Ball with Differentiable Factor Graph and Roto-Translational Invariant Representations
-                </span>
-                <div class="pub-authors">
-                    <strong>Qingyu Xiao</strong>, Zixuan Wu, and Matthew Gombolay
-                </div>
-                <div class="pub-venue">IEEE International Conference on Robotics and Automation (ICRA), 2025</div>
-                <div class="pub-note">Joint learning of a factor-graph estimator and neural predictor with invariant representations for aerodynamics and surface-bounce modeling.</div>
-                <div class="pub-links">
-                    <a href="#">PDF</a>
-                    <a href="#">Code</a>
-                </div>
-            </li>
-
-            <li class="pub">
-                <span class="pub-title">
-                    Multi-camera Asynchronous Ball Localization and Trajectory Prediction with Factor Graphs and Human Poses
-                </span>
-                <div class="pub-authors">
-                    <strong>Qingyu Xiao</strong>, Zulfiqar Zaidi, and Matthew Gombolay
-                </div>
-                <div class="pub-venue">IEEE International Conference on Robotics and Automation (ICRA), 2024</div>
-                <div class="pub-note">Asynchronous multi-camera estimation with human-pose cues; 63.6% improvement over EKF with ~5 ms inference.</div>
-                <div class="pub-links">
-                    <a href="#">PDF</a>
-                    <a href="#">Code</a>
-                </div>
-            </li>
-
-            <li class="pub">
-                <span class="pub-title">
-                    Learning Diverse Robot Striking Motions with Diffusion Models and Kinematically Constrained Gradient Guidance
-                </span>
-                <div class="pub-authors">
-                    K. M. Lee, S. Ye, <strong>Q. Xiao</strong>, et al.
-                </div>
-                <div class="pub-venue">IEEE International Conference on Robotics and Automation (ICRA), 2025</div>
-                <div class="pub-links">
-                    <a href="#">PDF</a>
-                </div>
-            </li>
-
-            <li class="pub">
-                <span class="pub-title">
-                    Learning Wheelchair Tennis Navigation from Broadcast Videos with Domain Knowledge Transfer and Diffusion Motion Planning
-                </span>
-                <div class="pub-authors">
-                    Z. Wu, Z. Zaidi, A. Patil, <strong>Q. Xiao</strong>, and M. Gombolay
-                </div>
-                <div class="pub-venue">IEEE International Conference on Robotics and Automation (ICRA), 2025</div>
-                <div class="pub-links">
-                    <a href="#">PDF</a>
-                </div>
-            </li>
-
-            <li class="pub">
-                <span class="pub-title">
-                    Interactive and Explainable Robot Learning: A Comprehensive Review
-                </span>
-                <div class="pub-authors">
-                    E. Seraj, K. M. Lee, Z. Zaidi, <strong>Q. Xiao</strong>, Z. Li, A. Nascimento, et al.
-                </div>
-                <div class="pub-venue">Foundations and Trends in Robotics, 2024</div>
-                <div class="pub-links">
-                    <a href="#">PDF</a>
-                </div>
-            </li>
-        </ol>
-
-        <p style="margin-top: 1.2rem;">
-            <a href="https://scholar.google.com/citations?user=-87DxVYAAAAJ&hl">View full list on Google Scholar →</a>
-        </p>
-    </section>
-
-    <!-- ====== EXPERIENCE ====== -->
-    <section id="experience">
-        <h2>Experience</h2>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Research Intern · Stack AV</span>
-                <span class="entry-venue">Pittsburgh, PA · Summer 2025</span>
-            </div>
-            <div class="entry-body">
-                <ul>
-                    <li>Built learnable factor-graph cuboid auto-labeling pipeline for autonomous driving with camera and LiDAR.</li>
-                    <li>Improved recall from ~50% to ~90% while maintaining ~90% precision.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">Computer Vision Intern · SkyMul</span>
-                <span class="entry-venue">Peachtree Corners, GA · Summer 2022</span>
-            </div>
-            <div class="entry-body">
-                <ul>
-                    <li>Real-time rebar pose detection for Unitree A1 construction robots.</li>
-                    <li>GPU-accelerated GMM for point-cloud rebar intersection detection.</li>
-                    <li>Improved VINS accuracy by adding rebar landmarks into GTSAM factor graphs.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== TEACHING ====== -->
-    <section id="teaching">
-        <h2>Teaching</h2>
-        <p>
-            <strong>CS 6601 — Artificial Intelligence</strong> · Georgia Institute of Technology · 2023 – 2024
-            <br>
-            <span style="color: var(--muted);">Teaching Assistant for the graduate-level AI course.</span>
-        </p>
-    </section>
-
-    <!-- ====== EDUCATION & AWARDS ====== -->
-    <section id="cv">
-        <h2>Education</h2>
-        <table class="edu-table">
-            <tr>
-                <td>Ph.D. in Robotics</td>
-                <td>Georgia Institute of Technology</td>
-                <td>2021 – Dec 2026 (Exp.)</td>
-            </tr>
-            <tr>
-                <td>M.S. in Mechanical Engineering and Materials Science</td>
-                <td>Duke University</td>
-                <td>2016 – 2018</td>
-            </tr>
-            <tr>
-                <td>B.S. in Energy and Power Engineering</td>
-                <td>North China Electric Power University</td>
-                <td>2012 – 2016</td>
-            </tr>
-        </table>
-
-        <h3>Honors & Awards</h3>
-        <ul class="compact-list">
-            <li>Honorable Mention, ASME Journal of Mechanisms and Robotics Best Paper Award (2023)</li>
-            <li>ASME-CIE Hackathon First Place (2022)</li>
-            <li>ASME-CIE Hackathon Third Place (2021)</li>
-        </ul>
-
-        <h3>Service</h3>
-        <p>
-            Workshop Organizer — <strong>RoboLetics 2.0</strong>: Workshop on Athletic Robots and Dynamic Motor Skills at ICRA 2025.
-        </p>
-    </section>
-
-</div>
-
-<footer>
-    <p>© 2026 Qingyu Xiao · <a href="mailto:qxiao33@gatech.edu">qxiao33@gatech.edu</a> · Atlanta, GA</p>
-</footer>
-
+    </footer>
 </body>
 </html>
+
